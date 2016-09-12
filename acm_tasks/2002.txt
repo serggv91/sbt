@@ -1,0 +1,19 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution 
+{
+  public static void main (String[] argv) throws IOException
+  {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(in.readLine());
+    StringTokenizer st = new StringTokenizer(in.readLine());
+    int a = 0;
+    int counter = 0;
+    for (int i = 0; i < n; i++) {
+    	a = Integer.parseInt(st.nextToken());
+    	counter += a;
+    }
+    System.out.println(counter);
+  }
+}

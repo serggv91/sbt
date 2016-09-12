@@ -1,0 +1,24 @@
+import java.util.*;
+import java.io.*;
+
+public class Solution 
+{
+  public static void main (String[] argv) throws IOException
+  {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(in.readLine());
+    StringTokenizer st = new StringTokenizer(in.readLine());
+    int[] arr = new int[5];
+    for (int i = 0; i < n; i++) {
+    	int a = Integer.parseInt(st.nextToken());
+	arr[a] += 1;
+    }
+
+   for (int i = 0; i < 5; i++) {
+        if (arr[i] != 0) {
+	   System.out.println(i + " " + arr[i]);
+        }
+    }
+
+  }
+}
