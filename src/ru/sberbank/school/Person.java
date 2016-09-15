@@ -12,27 +12,28 @@ public class Person {
 
     /**
 
-          * This method checks gender of persons. If genders are not equal - tries to marry.
+     ï¿½ ï¿½ ï¿½* This method checks gender ofï¿½persons.ï¿½Ifï¿½genders are not equal - tries to marry.
 
-          * If one of them has another spouse - execute divorce(sets spouse = null for husband and wife.
+     ï¿½ ï¿½ ï¿½*ï¿½Ifï¿½one of themï¿½hasï¿½another spouse - execute divorce(sets spouse = null for husband and wife.
 
-     Example: if both persons have spouses - then divorce will set 4 spouse to null) and then executes
+     Example:ï¿½ifï¿½bothï¿½personsï¿½have spouses - then divorce will set 4 spouse to null) and then executes
 
      marry().
 
-          * @param person - new husband/wife for this person.
+     ï¿½ ï¿½ ï¿½* @paramï¿½personï¿½- new husband/wife for thisï¿½person.
 
-          * @return - returns true if this person has another gender than passed person and they are not
+     ï¿½ ï¿½ ï¿½* @return - returns trueï¿½ifï¿½thisï¿½personï¿½hasï¿½another gender than passedï¿½personï¿½and they are not
 
      husband and wife, false otherwise
      */
     public boolean marry(Person person) {
+        //TODO: null pointer
         if (this.man == person.man || this.spouse == person) {
             return false;
         } else {
-            if (this.spouse != null)
+            if (this.spouse != null) //TODO: extra condition
                 this.divorce();
-            if (person.spouse != null)
+            if (person.spouse != null) //TODO: extra condition
                 person.divorce();
             this.spouse = person;
             person.spouse = this;
@@ -42,9 +43,9 @@ public class Person {
 
     /**
 
-          * Sets spouse = null if spouse is not null
+     ï¿½ ï¿½ ï¿½* Sets spouse = nullï¿½ifï¿½spouse is not null
 
-          * @return true - if person status has been changed
+     ï¿½ ï¿½ ï¿½* @return true -ï¿½ifï¿½personï¿½statusï¿½hasï¿½beenï¿½changed
      */
     public boolean divorce() {
         if (this.spouse != null) {
