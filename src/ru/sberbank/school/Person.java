@@ -1,3 +1,5 @@
+package ru.sberbank.school;
+
 public class Person {
     private final boolean man;
     private final String name;
