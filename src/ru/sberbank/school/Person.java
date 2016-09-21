@@ -31,10 +31,8 @@ public class Person {
         if (this.man == person.man || this.spouse == person) {
             return false;
         } else {
-            if (this.spouse != null) //TODO: extra condition
-                this.divorce();
-            if (person.spouse != null) //TODO: extra condition
-                person.divorce();
+            this.divorce();
+            person.divorce();
             this.spouse = person;
             person.spouse = this;
             return true;
