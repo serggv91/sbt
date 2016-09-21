@@ -24,7 +24,7 @@ public class Task3
 
     private class ReverseIterator implements Iterator<String> {
 
-        final private List<String> list;
+        private final List<String> list;
         private int index;
 
         public ReverseIterator(List<String> list) {
@@ -54,6 +54,84 @@ public class Task3
             list.remove(--index);
         }
     }
+
+    public boolean run1(File sourceFile) {
+        /**
+         *  1. Number of different words in the file
+         */
+
+        Set<String occurrences = new HashSet<>();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(sourceFile));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] words = line.split("\\W+");
+                for ( String word : words)
+                    occurrences.add(word);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            return false;
+        }
+
+        System.out.println("1. Number of different words in the file: " + occurrences.size());
+    }
+
+    public boolean run2(File sourceFile) {
+        /**
+         *  2. List of the sorted words + 3. Number of words occurences
+         */
+
+        /**
+         *  Read lines to the Map
+         */
+        Map<String, Integer> occurrences = new TreeMap<>(new LengthFirstComparator()); // Keys in TreeMap are sorted
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(sourceFile));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] words = line.split("\\W+");
+                for ( String word : words) {
+                    Integer oldCount = occurrences.get(word);
+                    if (oldCount == null)
+                        oldCount = 0;
+                    occurrences.put(word, oldCount + 1);
+                }
+
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            return false;
+        }
+
+        System.out.println("2. List of the sorted words + 3. Number of words occurences");
+        for (Map.Entry<String, Integer> entry : occurrences.entrySet())
+            System.out.println(entry.getKey() + " [" + entry.getValue() + "]");
+    }
+
+    public boolean run4(File sourceFile) {
+        /**
+         * 4. All lines in reverse order
+         */
+
+        ArrayDeque<String> lines= new ArrayDeque<String>();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(sourceFile));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                lines.add(line);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            return false;
+        }
+
+        System.out.println("4. All lines in reverse order");
+        ListIterator li = lines.descendingIterator();
+        while(li.hasNext())
+            System.out.println(li.next());
+    }
+
 
 
     public boolean run (File sourceFile, int[] order) {
