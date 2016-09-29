@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import java.io.File;
 import java.util.stream.Collectors;
 
+
 /**
  * Created by svetlana on 25.09.16.
  */
@@ -69,20 +70,22 @@ public class Factory implements Factorable {
         beans.forEach((beanClass, objects) -> objects.forEach(o -> invokeMethod(o, beanClass, PostConstruct.class)));
     }
 
-    private void invokeMethod(Object bean, Class<?> beanCls, Class<?> marker) {
+    private void invokeMethod(Object bean, Class<?> beanCls, Class<? extends  Annotation>  marker) {
         try {
-            for (Method method : beanCls.getDeclaredMethods()) {
-                Annotation[] annotations = method.getDeclaredAnnotations();
-                for (Annotation annotation : annotations)
-                    if (annotation.annotationType().equals(marker)) {
+            for (Method method : beanCls.getDeclaredMethods())
+                if (method.isAnnotationPresent(marker)) {
+                    if (method.getParameterTypes().length == 0 && method.getReturnType().getName().equals("void")) {
                         method.setAccessible(true);
                         method.invoke(bean);
                     }
-            }
+                }
+
         } catch (InvocationTargetException | IllegalAccessException e ) {
             System.out.println(beanCls + " error when invoke " + marker.getName());
         }
     }
+
+
 
 
     private Map<Class<?>, List<Class<?>>> obtainGraph(List<Class<?>> classes) {
