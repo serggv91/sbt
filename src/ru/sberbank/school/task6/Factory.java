@@ -74,7 +74,7 @@ public class Factory implements Factorable {
         try {
             for (Method method : beanCls.getDeclaredMethods())
                 if (method.isAnnotationPresent(marker)) {
-                    if (method.getParameterTypes().length == 0 && method.getReturnType().getName().equals("void")) {
+                    if (method.getParameterTypes().length == 0 && method.getReturnType()equals(void.class)) {
                         method.setAccessible(true);
                         method.invoke(bean);
                     }
